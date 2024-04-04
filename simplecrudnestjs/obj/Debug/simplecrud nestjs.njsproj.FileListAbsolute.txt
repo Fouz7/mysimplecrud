@@ -1,0 +1,3 @@
+D:\simplecrudnestjs\obj\Debug\simplecrud nestjs.njsproj.AssemblyReference.cache
+D:\simplecrudnestjs\obj\Debug\simplecrud nestjs.njsproj.CoreCompileInputs.cache
+D:\simplecrudnestjs\bin\Microsoft.NodejsTools.WebRole.dll

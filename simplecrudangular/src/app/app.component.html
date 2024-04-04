@@ -1,0 +1,107 @@
+<header>
+    <nav>
+        <div class="navbar">
+            <h1>SIMPLE CRUD</h1>
+            <p-button 
+                icon="pi pi-plus-circle" 
+                [text]="true"
+                [rounded]="true" 
+                size="large"
+                [style]="{ 'margin-right': '1rem'}"
+                severity="success"
+                (click)="displayDialog = true"
+            />
+        </div>
+    </nav>
+</header>
+<body>
+    <div class="p-inputgroup">
+        <i class="pi pi-search search-icon" (click)="searchCustomers(searchName)"></i>
+        <input 
+            type="text" 
+            placeholder="Search by name"
+            pInputText 
+            [(ngModel)]="searchName" 
+            class="search-input"
+            (keyup.enter)="searchCustomers(searchName)"
+        >
+        <i class="pi pi-times clear-icon" *ngIf="searchName" (click)="clearSearch()"></i>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <p-table 
+                    [value]="customers"
+                    [paginator]="true"
+                    [rows]="7"
+                    [globalFilterFields]="['no', 'nama', 'alamat', 'kota']"
+                >
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Number</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>Actions</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-customer>
+                        <tr>
+                            <td>{{customer.no}}</td>
+                            <td>{{customer.nama}}</td>
+                            <td>{{customer.alamat}}</td>
+                            <td>{{customer.kota}}</td>
+                            <td>
+                                <p-button 
+                                    icon="pi pi-pencil" 
+                                    [text]="true"
+                                    [rounded]="true" 
+                                    size="small"
+                                    [style]="{ 'margin-right': '1rem'}"
+                                    severity="info"
+                                    (click)="editCustomer(customer)" 
+                                />
+                                <p-button 
+                                    icon="pi pi-trash" 
+                                    [text]="true"
+                                    [rounded]="true" 
+                                    size="small"
+                                    severity="danger"
+                                    (click)="deleteCustomer(customer.no)"
+                                />
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</body>
+
+<p-dialog header="{{isEditing ? 'Edit Customer' : 'Add Customer'}}" 
+    [(visible)]="displayDialog"
+    [modal]="true"
+    [style]="{width: '50vw'}"
+    (onHide)="resetForm()"
+>
+    <form class="form" [formGroup]="customerForm">
+        <div>
+            <label for="nama">Name:</label>
+            <input id="nama" type="text" formControlName="nama" pInputText>
+        </div>
+        <div>
+            <label for="alamat">Address:</label>
+            <input id="alamat" type="text" formControlName="alamat" pInputText>
+        </div>
+        <div>
+            <label for="kota">City:</label>
+            <input id="kota" type="text" formControlName="kota" pInputText>
+        </div>
+        <p-button
+            [style]="{ 'margin-top': '1rem'}" 
+            label="Submit"
+            size="small"
+            (click)="isEditing ? updateCustomer() : addCustomer()"
+        ></p-button>
+    </form>
+</p-dialog>
