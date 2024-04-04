@@ -20,6 +20,11 @@ header {
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
+
+  .input{
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .p-inputgroup {
