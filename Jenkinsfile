@@ -30,7 +30,7 @@ pipeline {
           "run angular": {
             dir("simplecrudangular") {
               sh "npm install"
-              sh "ng serve"
+              sh "npm start"
             }
           }
         )
