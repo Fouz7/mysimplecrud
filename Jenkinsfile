@@ -23,14 +23,14 @@ pipeline {
         parallel (
           "run nest": {
             dir("simplecrudnestjs") {
-              sh "npm install"
-              sh "npm start"
+              bat "npm install"
+              bat "npm start"
             }
           },
           "run angular": {
             dir("simplecrudangular") {
-              sh "npm install"
-              sh "npm start"
+              bat "npm install"
+              bat "npm start"
             }
           }
         )
