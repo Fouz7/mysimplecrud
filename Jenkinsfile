@@ -24,10 +24,10 @@ pipeline {
           "run nest": {
             dir("simplecrudnestjs") {
               sh "npm install"
-              sh "nest start"
+              sh "npm start"
             }
           },
-          "run react": {
+          "run angular": {
             dir("simplecrudangular") {
               sh "npm install"
               sh "ng serve"
